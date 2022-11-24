@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HMLMBKqgCcKZqvMNM7yRNLikT+HdhXq85roKYgLJwjwIiUxxvGUWUbA8siFCzBZ+VIC5PNmdeJ6H/e+/bWiaqg==",
+  "dgSpecHash": "naoJnTLkQIu7FBcafHo+VPgrvHUnhXPlvSSoiJXmYpJ7eGwwNWdVK1diEQp5K2geSQ14pt+AQSbcR4vKDQ2alw==",
   "success": true,
-  "projectFilePath": "D:\\С#\\UserManager\\UserManager.csproj",
+  "projectFilePath": "D:\\С#\\DataBase\\UserManager\\UserManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zador\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.11\\microsoft.entityframeworkcore.6.0.11.nupkg.sha512",
     "C:\\Users\\zador\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.11\\microsoft.entityframeworkcore.abstractions.6.0.11.nupkg.sha512",

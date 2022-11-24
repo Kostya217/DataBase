@@ -12,17 +12,9 @@ namespace UserManager.Data
             
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //new UserEntityTypeConfiguration().Configure(modelBuilder.Entity<User>());
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserEntityTypeConfiguration).Assembly);
-
-            //new AccessRoleEntityTypeConfiguration().Configure(modelBuilder.Entity<AccessRole>());
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccessRoleEntityTypeConfiguration).Assembly);
-
-            //new AccessRuleEntityTypeConfiguration().Configure(modelBuilder.Entity<AccessRule>());
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccessRuleEntityTypeConfiguration).Assembly);
-            modelBuilder.ApplyConfiguration(new UserEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new AccessRoleEntityTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new AccessRuleEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new AccessRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AccessRuleConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

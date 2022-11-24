@@ -4,7 +4,7 @@ using UserManager.Data.Model;
 
 namespace UserManager.Data.Configuration
 {
-    public class AccessRuleEntityTypeConfiguration : IEntityTypeConfiguration<AccessRule>
+    public class AccessRuleConfiguration : IEntityTypeConfiguration<AccessRule>
     {
         public void Configure(EntityTypeBuilder<AccessRule> builder)
         {

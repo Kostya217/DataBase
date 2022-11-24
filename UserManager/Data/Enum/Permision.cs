@@ -3,6 +3,6 @@
     public enum Permission
     {
         Allow,
-        Deny,
+        Deny
     }
 }

@@ -1,0 +1,119 @@
+﻿@model UserManager.Models.UserManagerViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "User Manager";
+
+    List<SelectListItem> accessRoleList = new List<SelectListItem>();
+    foreach (var accessRole in Model.AccessRoles)
+    {
+        accessRoleList.Add(new SelectListItem { Text = accessRole.Role, Value = accessRole.AccessRoleId.ToString() });
+    }
+
+    SelectList selectList = new SelectList(accessRoleList, "Value", "Text");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" type="text/css" href="~/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/register.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/crud.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/navBar.css" />
+</head>
+<body>
+    <div class="register-box">
+        <h2>Register</h2>
+        <form asp-action="CheckAddUser" onsubmit="return jQueryAjaxAdd(this);">
+            <div class="user-box">
+                <input asp-for="User.Username" type="text" name="username" id="username" required>
+                <label>Username</label>
+            </div>
+
+            <div class="user-box">
+                <input asp-for="User.Password" type="password" name="password" id="password" required>
+                <label>Password</label>
+            </div>
+
+            <div class="role-select">
+                <label>Choose Access Role:</label>
+                @Html.DropDownList("AccessRoleId", selectList)
+            </div>
+
+            <button id="register-btn" type="submit">Register</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage Users</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <form class="search-container" method="post">
+                            <input id="search-username" type="text" placeholder="Search.." name="search">
+                            @*<button id="search-btn" type="submit"><iconify-icon icon="fe:search"></iconify-icon></button>*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover" id="tblUser">
+                <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>Username</th>
+                        <th>Access_Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tblUsers">
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr id="tr-@user.Id">
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                    <label for="checkbox1"></label>
+                                </span>
+                            </td>
+                            <td id="user-@user.Id">@user.Username</td>
+                            <td id="drop-down-user-@user.Id">@user.AccessRole</td>
+                            
+                            <td id="buttons-@user.Id">
+                                <a id="edit-user-@user.Id" onclick="changeTdToInputAndSelect(@user.Id, '@user.Username')" class="edit" data-toggle="modal">
+                                    <i>
+                                        <iconify-icon icon="eva:edit-outline" width="27" height="27"></iconify-icon>
+                                    </i>
+                                </a>
+                                <form asp-action="DeleteUser" asp-route-id="@user.Id" id="delete-user-@user.Id" onsubmit="return jQueryAjaxDelete(this)">
+                                    <button type="submit" class="delete" data-toggle="modal">
+                                        <i>
+                                            <iconify-icon icon="mingcute:delete-2-line" width="25" height="25"></iconify-icon>
+                                        </i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/user_manager.js"></script>
+    <script src="~/js/menu.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+</body>
+</html>

@@ -3,7 +3,8 @@ using UserManager.Data;
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
-        .AddData(builder.Configuration);
+        .AddData(builder.Configuration)
+        .AddService();
 }
 
 // Add services to the container.
@@ -28,22 +29,17 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=UserManager}/{action=UserManager}/{id?}");
 
-SeedDatabase();
-
-void SeedDatabase()
-{
-    using (var scope = app.Services.CreateScope())
-        try
-        {
-            var scopedContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            DbInitializer.Initializer(scopedContext);
-        }
-        catch
-        {
-            throw;
-        }
-}
+using (var scope = app.Services.CreateScope())
+    try
+    {
+        var scopedContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        DbInitializer.Initializer(scopedContext);
+    }
+    catch
+    {
+        throw;
+    }
 
 app.Run();

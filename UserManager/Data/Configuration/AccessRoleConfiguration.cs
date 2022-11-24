@@ -4,7 +4,7 @@ using UserManager.Data.Model;
 
 namespace UserManager.Data.Configuration
 {
-    public class AccessRoleEntityTypeConfiguration : IEntityTypeConfiguration<AccessRole>
+    public class AccessRoleConfiguration : IEntityTypeConfiguration<AccessRole>
     {
         public void Configure(EntityTypeBuilder<AccessRole> builder)
         {

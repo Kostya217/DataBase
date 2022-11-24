@@ -5,7 +5,7 @@ using UserManager.Data.Model;
 
 namespace UserManager.Data.Configuration
 {
-    public class UserEntityTypeConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
